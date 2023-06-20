@@ -1,9 +1,0 @@
-README.md
-pyproject.toml
-ELFTool.egg-info/PKG-INFO
-ELFTool.egg-info/SOURCES.txt
-ELFTool.egg-info/dependency_links.txt
-ELFTool.egg-info/top_level.txt
-ELFTool_template/src/ELFTool/ELFTool.py
-ELFTool_template/src/ELFTool/__init__.py
-ELFTool_template/src/ELFTool/__main__.py

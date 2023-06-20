@@ -1,4 +1,4 @@
 import sys
-from ELFTool import main
+import ELFTool
 if __name__ == '__main__':
-    sys.exit(main(sys.argv))
+    sys.exit(ELFTool.main(sys.argv))
