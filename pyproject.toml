@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=61.0", "pyelftools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ELFTool"
+version = "0.1"
+authors = [
+  { name="Jakub Charvat", email="jakubcharvat99@gmail.com" },
+]
+readme = "README.md"
+description = "tool for analysing .ELF files"
+requires-python = ">=3.9"
