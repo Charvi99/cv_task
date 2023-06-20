@@ -1,6 +1,8 @@
 from elftools.elf.elffile import ELFFile
 import sys
 import os
+from pathlib import Path
+
 
 if __name__ == '__main__':
     print("================")
@@ -8,26 +10,31 @@ if __name__ == '__main__':
     print("================")
     
     elf_files = []
-    
-    # elf file input check
-    sys.argv = [sys.argv[0], r'C:\Espressif\cv_task\elf_files\blink.elf', '"elf_files\\blink.elf"', 'argument2']
+    sys.argv = [sys.argv[0], r"C:\Espressif\cv_task\elf_files", r"C:\Espressif\cv_task\elf_files\main.elf"]
+    # argument check
     if len(sys.argv) > 1:
-        for arg_index in range(1,len(sys.argv)):
-            try:
-                arg_path = str(sys.argv[arg_index])
-                if arg_path.endswith('.elf'):
-                    elf_files.append(arg_path)
-            except:
-                print("Argument: " +  "is not path to .ELF file")
-                
+        for arg in sys.argv[1:]:
+            path = Path(arg)
+            
+            # if path is file
+            if path.is_file():
+                    try:
+                        if path.suffix == '.elf':
+                            elf_files.append(path)
+                    except:
+                        print("Argument: " +  "is not path to .ELF file")
+
+            # if path is dir            
+            elif path.is_dir():
+                try:
+                    for path_indir in os.scandir(path):
+                        if path_indir.name.endswith('.elf'):
+                            elf_files.append(path_indir)
+                except:
+                    print("Directory " + path.name + " has not been found")
     else:
-        try:
-            for path in os.scandir(r'elf_files'):
-                if path.name.endswith('.elf'):
-                    elf_files.append(path)
-        except:
-            print("Directory elf_files has not been found")
-                
+        print("Missing arguments, enter at least one path to .ELF file or directory with .ELF file")
+    
     if elf_files.count == 0:
         print("No .ELF files have not been provided")
         exit()                
@@ -36,12 +43,8 @@ if __name__ == '__main__':
     template = "{0:4}|{1:7}|{2:10}|{3:12}|{4:11}" # column widths: 8, 10, 15, 7, 10
 
     for path in elf_files:
-        if type(path) == os.path:
-            print('File: ', path.name)
-        else:
-            print('File: ', path)
-        print("---------------")
-
+        print('File: ', path.name)
+        
         try:
             file = open(path, 'rb')
             elffile = ELFFile(file)
