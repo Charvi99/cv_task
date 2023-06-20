@@ -1,6 +1,7 @@
 from elftools.elf.elffile import ELFFile
 import os
 from pathlib import Path
+import sys
         
 def loadArguments(argv):    
     '''
@@ -89,5 +90,7 @@ def main(argv):
         print(err + " files faild to open")
     print("===============================================")
 
+if __name__ == '__main__':
+    main(sys.argv)
         
         
