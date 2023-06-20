@@ -8,11 +8,9 @@ It provides information of each segment about
 
 ## Usage
 At first navigate into directory when script or executable file is located. Then:
-Run script with following command for python package:
- `python ELFTool [arguments]`
+- Run script with following command for python package: `python ELFTool [arguments]`
 
- Or run executable file with command:
- `ELFTool.exe [arguments]`
+ - Or run executable file with command: `ELFTool.exe [arguments]`
 
  Arguments are path to .ELF file or directory with .ELF files inside. For multiple path input separate arguments with space.
  Input arguments must be at least one or more .ELF file or directory with one or more .ELF files.
